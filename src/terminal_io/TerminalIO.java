@@ -1,3 +1,5 @@
+package terminal_io;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +32,7 @@ public final class TerminalIO {
          */
     }
 
-    static <T> void print(T obj) {
+    public static <T> void print(T obj) {
         /**
          * Writes the object to the buffer, and renders the buffer all in one.
          */
@@ -38,7 +40,7 @@ public final class TerminalIO {
         renderScreen();
     }
 
-    static void screenWidth(int w) {
+    public static void screenWidth(int w) {
         /**
          * Sets the width if the given width is valid and returns the current
          * width of the output screen
@@ -48,7 +50,7 @@ public final class TerminalIO {
         }
     }
 
-    static void setBorders(String border) {
+    public static void setBorders(String border) {
         /**
          * Sets the screen borders to the provided non-empty string.
          */
@@ -58,7 +60,7 @@ public final class TerminalIO {
         }
     }
 
-    static void setBorders(String left, String right) {
+    public static void setBorders(String left, String right) {
         /**
          * Sets the screen borders to the provided non-empty strings.
          */
@@ -70,7 +72,7 @@ public final class TerminalIO {
         }
     }
 
-    static <T> void appendToLastLine(T obj) {
+    public static <T> void appendToLastLine(T obj) {
         /**
          * Appends the given object to the last line of the buffer
          */
@@ -78,14 +80,14 @@ public final class TerminalIO {
         CONTENTS.set(CONTENTS.size() - 1, currentLine + obj.toString());
     }
 
-    static <T> void appendLine(T obj) {
+    public static <T> void appendLine(T obj) {
         /**
          * Appends the given object to the buffer as a new line
          */
         CONTENTS.add(obj.toString());
     }
 
-    static void renderScreen() {
+    public static void renderScreen() {
         /**
          * Clears the terminal, then writes the buffer into the terminal,
          * keeping the buffer available in case a refresh is needed. The line is
@@ -134,14 +136,14 @@ public final class TerminalIO {
         }
     }
 
-    static void clear() {
+    public static void clear() {
         /**
          * Clears the buffer.
          */
         CONTENTS.clear();
     }
 
-    static void clearScreen() {
+    public static void clearScreen() {
         /**
          * Tries to clear the terminal, printing an error if the process fails
          *
@@ -165,7 +167,7 @@ public final class TerminalIO {
         }
     }
 
-    static String getResponse(String msg, String targetCommand) {
+    public static String getResponse(String msg, String targetCommand) {
         /**
          * Appends the given message to the buffer, then waits for the user to
          * successfully enter the desired string, asking again if the String
@@ -182,7 +184,7 @@ public final class TerminalIO {
         return command;
     }
 
-    static String getResponse(String msg, String[] validCommands) {
+    public static String getResponse(String msg, String[] validCommands) {
         /**
          * Appends the given message to the buffer, then waits for the user to
          * successfully enter a String that is contained in the given array,
@@ -199,7 +201,7 @@ public final class TerminalIO {
         return command;
     }
 
-    static String getResponse(String msg, Collection<String> validCommands) {
+    public static String getResponse(String msg, Collection<String> validCommands) {
         /**
          * Appends the given message to the buffer, then waits for the user to
          * successfully enter a String that is contained in the given collection
@@ -216,7 +218,7 @@ public final class TerminalIO {
         return command;
     }
 
-    static String getResponse(String msg, Function<String, Boolean> validator) {
+    public static String getResponse(String msg, Function<String, Boolean> validator) {
         /**
          * Appends the given message to the buffer, then waits for the user to
          * successfully enter a String for which the validator function returns
@@ -233,7 +235,7 @@ public final class TerminalIO {
         return command;
     }
 
-    static void getContinue() {
+    public static void getContinue() {
         /**
          * Asks the user to press 'Enter' to continue, asking again if user
          * types anything else, after which it clears the buffer and resumes
@@ -242,7 +244,7 @@ public final class TerminalIO {
         getResponse("Press 'enter' to continue", ""); // No sense returning an empty string
     }
     
-    static void getContinue(String msg) {
+    public static void getContinue(String msg) {
         /**
          * Asks the user to press 'Enter' to continue with a custom prompt,
          * asking again if user types anything else, after which it clears the
