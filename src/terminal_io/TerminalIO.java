@@ -180,6 +180,21 @@ public final class TerminalIO {
 
     /**
      * Appends the given prompt to the current contents, then refreshes the
+     * terminal display. This will accept any string on the first attempt.
+     *
+     * @param msg The message displayed to the user.
+     * @return A string containing the user's input.
+     */
+    public static String getResponse(String msg) {
+        String command;
+        TerminalIO.appendLine(msg);
+        TerminalIO.renderDisplay();
+        command = USER.nextLine().trim();
+        TerminalIO.clear();
+        return command;
+    }
+/**
+     * Appends the given prompt to the current contents, then refreshes the
      * terminal display until the user enters the desired string.
      *
      * @param msg The message displayed to the user.
